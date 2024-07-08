@@ -43,23 +43,24 @@ function checkRepetition(){
     })
 }
 
-function checkDueDate(){
+function checkDueDate() {
+
+    const rows = document.querySelector('.tasks-table').getElementsByTagName('tr');
+    for (let i = 1; i < rows.length; i++) {
+        rows[i].style.backgroundColor = "white";
+    }
+
+
     dueTasks = taskArray.filter((element) => {
         const currentDate = new Date();
         const elementDueDate = new Date(element.date);
-        if(elementDueDate < currentDate){
-            return element;
-        }  
-    })
-    taskArray.forEach((element,index) =>{
-        const tr = document.querySelector('.tasks-table').getElementsByTagName('tr')[index + 1];
-        tr.style.backgroundColor="white";
-    })
-    dueTasks.forEach((element,index) =>{
-        const tr = document.querySelector('.tasks-table').getElementsByTagName('tr')[index + 1];
-        tr.style.backgroundColor="red";
-    })
-   
+        return elementDueDate < currentDate;
+    });
+
+    dueTasks.forEach((element, index) => {
+        const tr = document.querySelector('.tasks-table').getElementsByTagName('tr')[taskArray.indexOf(element) + 1];
+        tr.style.backgroundColor = "red";
+    });
 }
 checkDueDate();
 
