@@ -44,7 +44,6 @@ function checkRepetition(){
 }
 
 function checkDueDate(){
-    console.log("due check");
     dueTasks = taskArray.filter((element) => {
         const currentDate = new Date();
         const elementDueDate = new Date(element.date);
@@ -65,7 +64,6 @@ function checkDueDate(){
 checkDueDate();
 
 function displayData() {
-    // console.clear();
     const table = document.querySelector('.tasks-table');
     table.innerHTML = '';
 
@@ -180,7 +178,6 @@ function editTasks(index) {
     const serialNumber = tr.querySelector('.serialNumber');
 
     inputFields.forEach(input => {
-        console.log(serialNumber)
         if(serialNumber !== input ){
             input.disabled = !input.disabled;
         }
@@ -243,10 +240,8 @@ function searchTasks(event){
 
     if(elementfound.length > 0){
         const index = taskArray.findIndex(task =>  task.task === elementfound[0].task );
-        console.log('index',index);
         if(index !== -1){
             const tr = document.querySelector('.tasks-table').getElementsByTagName('tr')[index + 1];
-            console.log(tr)
             tr.style.border="5px solid red";
             tr.scrollIntoView({behaviour:'smooth',block:'center'});
         }
@@ -261,7 +256,6 @@ function searchTasks(event){
     checkDueDate();
 }
 function markAllTasks(){
-    console.log('clicked');
     taskArray.forEach((element,index) =>{
         const tr = document.querySelector('.tasks-table').getElementsByTagName('tr')[index + 1];
         const completeBtn = tr.querySelector('.complete-btn');
